@@ -33,33 +33,75 @@
           </div>
         </nav>
 
-        <div class="parallax maintext welcome">Welcome to my Website! Have fun!</div>
+        <!-- Parallax 1: big welcome -->
+        <div class="parallax hero">
+          <div class="hero-box">
+            <h1 class="hero-title">Welcome to my Website!</h1>
+            <p class="hero-sub">I'm Akshay. I play basketball, lift, and build things with code. Have fun looking around.</p>
+            <a class="btn btn-hero" href="game.html">Play Hoop Shot</a>
+            <a class="btn btn-hero btn-hero-outline" href="bio.html">About me</a>
+          </div>
+        </div>
+
+        <!-- Quick links -->
+        <div class="container section">
+          <div class="row text-center">
+            <div class="col-sm-4">
+              <a class="quick-link" href="bio.html">
+                <span class="glyphicon glyphicon-user"></span>
+                <h3>Bio</h3>
+                <p>Basketball, music, and the gym.</p>
+              </a>
+            </div>
+            <div class="col-sm-4">
+              <a class="quick-link" href="world.html">
+                <span class="glyphicon glyphicon-globe"></span>
+                <h3>See the World</h3>
+                <p>Fly across a 3D world map.</p>
+              </a>
+            </div>
+            <div class="col-sm-4">
+              <a class="quick-link" href="projects.html">
+                <span class="glyphicon glyphicon-folder-open"></span>
+                <h3>Projects</h3>
+                <p>What I'm working on this year.</p>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Parallax 2: divider with a line of text -->
+        <div class="parallax parallax2 divider">
+          <p class="divider-text">Lock in. Keep shooting.</p>
+        </div>
 
         <!-- SPECIAL ELEMENT 2: JavaScript greeting + motivation generator -->
         <div class="container section">
           <div class="row">
             <div class="col-sm-6">
-              <h2>Say hi</h2>
-              <p>Type your name and I'll greet you based on the time of day.</p>
-              <input type="text" id="nameInput" class="form-control" placeholder="Your name">
-              <br>
-              <button class="btn btn-default" id="greetBtn">Greet me</button>
-              <p id="greetingText" class="output-text"></p>
+              <div class="panel-box">
+                <h2>Say hi</h2>
+                <p>Type your name and I'll greet you based on the time of day.</p>
+                <input type="text" id="nameInput" class="form-control" placeholder="Your name">
+                <button class="btn btn-hero" id="greetBtn">Greet me</button>
+                <p id="greetingText" class="output-text"></p>
+              </div>
             </div>
             <div class="col-sm-6">
-              <h2>Need a boost?</h2>
-              <p>Click the button for a random line to get you locked in.</p>
-              <button class="btn btn-default" id="motivateBtn">Motivate me</button>
-              <p id="motivationText" class="output-text"></p>
-              <p id="clickCount" class="small-note"></p>
+              <div class="panel-box">
+                <h2>Need a boost?</h2>
+                <p>Click the button for a random line to get you locked in.</p>
+                <button class="btn btn-hero" id="motivateBtn">Motivate me</button>
+                <p id="motivationText" class="output-text"></p>
+                <p id="clickCount" class="small-note"></p>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="parallax maintext text-center top"></div>
-
         <footer class="broski text">
           <p>&copy; 2026 Akshay Arora. All rights reserved.</p>
+          <p><a class="footer-link" href="https://www.livermoreschools.org/granadahigh" target="_blank">Granada High School</a></p>
         </footer>
 
         <script>
