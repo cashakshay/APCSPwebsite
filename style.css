@@ -1,0 +1,114 @@
+.myNav{
+    background-color:black;
+}
+
+.parallax {
+  /* The image used */
+  background-image: url("https://codehs.com/uploads/eefe9ab22be0fdfc0860514537f612a1");
+
+  /* Set a specific height */
+  min-height: 400px;
+  
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.parallax2 {
+  /* The image used */
+  background-image: url("https://codehs.com/uploads/eefe9ab22be0fdfc0860514537f612a1");
+
+  /* Set a specific height */
+  min-height: 400px;
+  
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.floating-btn {
+    position: fixed;     /* Lock it to the viewport */
+    bottom: 150px;        /* 20px up from the bottom edge */
+    right: 220px;         /* 20px in from the right edge */
+    z-index: 1000;       /* Keep it on top of other content */
+    background-color:transparent;    
+    border:none;
+}
+body {
+    background-color:white;
+    color:black;
+}
+.broski{
+    margin-bottom:0px;
+    margin-top:0px;
+}
+.footmargin {
+    margin-bottom:0px;
+}
+.maintext {
+    font-size:45px;
+    color:#A0A0A0;
+    font-weight:bold;
+}
+.top{
+    padding-top:200px;
+}
+.text {
+    font-size:20px;
+    color:#A0A0A0;
+    font-weight:bold;
+}
+@media screen and (max-width: 600px) {
+  body {
+    background-color: white;
+  }
+}
+nav li:hover{
+    background-color:pink;
+}
+        .stage {
+            width: 100%;
+            height: 450px;
+            perspective: 800px;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            background: #03030c;
+            border-radius: 12px;
+            scroll-snap-type: x mandatory;
+        }
+
+        /* The container that rotates into 3D space */
+        .world-tunnel {
+            display: flex;
+            width: 300%; /* Triple width to allow seamless scrolling wrap */
+            height: 100%;
+            transform-style: preserve-3d;
+            transform: rotateX(-5deg); /* Tilts the world slightly down */
+        }
+
+        /* The world map texture projected in 3D */
+        .world-map {
+            width: 100%;
+            height: 100%;
+            /* Uses a high-res flat equirectangular world map */
+            background-image: url('https://wikimedia.org');
+            background-size: repeat-x contain;
+            background-position: center;
+            transform: translateZ(-200px); /* Pushes the texture back to create depth curve */
+        }
+
+        /* Hiding scrollbar tracks for a cleaner app look */
+        .stage::-webkit-scrollbar {
+            height: 8px;
+        }
+        .stage::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+.black {
+    color:black;
+}
