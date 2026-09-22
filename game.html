@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/x-icon" href="https://codehs.com/uploads/6795630657e2aea573561b8d9246dac0">
+        <title>Akshay Arora</title>
+    </head>
+    <body>
+        <nav class="broski navbar navbar-inverse text">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.html">AP CSP Website</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="bio.html">Bio</a></li>
+                <li><a href="world.html">See the World</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li class="active"><a href="game.html">Hoop Shot</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <!-- SPECIAL ELEMENT 1: the game -->
+        <div class="container section text-center">
+          <h1 class="maintext black">Hoop Shot</h1>
+          <p>Time your shot so the ball goes through the moving hoop. Press <b>Space</b> or tap the court to shoot. Miss 3 times and the game is over.</p>
+
+          <div class="game-stats">
+            <span>Score: <b id="scoreText">0</b></span>
+            <span>Lives: <b id="livesText">3</b></span>
+            <span>Best: <b id="bestText">0</b></span>
+          </div>
+
+          <canvas id="gameCanvas" width="600" height="400"></canvas>
+
+          <p id="messageText" class="output-text">Click Start to play.</p>
+          <button class="btn btn-default" id="startBtn">Start</button>
+
+          <h3>Your last games</h3>
+          <ul id="historyList" class="history-list"></ul>
+        </div>
+
+        <footer class="broski text">
+          <p>&copy; 2026 Akshay Arora. All rights reserved.</p>
+        </footer>
+
+        <script>
+          var canvas = document.getElementById("gameCanvas");
+          var ctx = canvas.getContext("2d");
+
+          // Game settings
+          var HOOP_Y = 90;          // how far down the rim is
+          var HOOP_WIDTH = 90;      // how wide the rim is
+          var BALL_RADIUS = 16;
+          var SHOT_SPEED = 9;
+
+          // Game state
+          var score = 0;
+          var lives = 3;
+          var hoopX = 100;
+          var hoopSpeed = 3;
+          var ball = {};
+          var gameRunning = false;
+          var scoreHistory = [];    // list of past scores
+
+          function resetBall() {
+            ball = { x: canvas.width / 2, y: canvas.height - 40, flying: false };
+          }
+
+          function updateText() {
+            document.getElementById("scoreText").textContent = score;
+            document.getElementById("livesText").textContent = lives;
+          }
+
+          function startGame() {
+            if (gameRunning) {
+              return;   // don't start a second game on top of the first
+            }
+            score = 0;
+            lives = 3;
+            hoopX = 100;
+            hoopSpeed = 3;
+            resetBall();
+            updateText();
+            gameRunning = true;
+            document.getElementById("messageText").textContent = "Press Space or tap to shoot!";
+            document.getElementById("startBtn").disabled = true;
+            requestAnimationFrame(gameLoop);
+          }
+
+          function shoot() {
+            if (gameRunning && !ball.flying) {
+              ball.flying = true;
+            }
+          }
+
+          function update() {
+            // Move the hoop and bounce it off the walls
+            hoopX = hoopX + hoopSpeed;
+            if (hoopX < 0 || hoopX + HOOP_WIDTH > canvas.width) {
+              hoopSpeed = -hoopSpeed;
+            }
+
+            if (ball.flying) {
+              ball.y = ball.y - SHOT_SPEED;
+
+              // The frame the ball reaches the rim, check if it's lined up
+              if (ball.y <= HOOP_Y && ball.y + SHOT_SPEED > HOOP_Y) {
+                if (ball.x > hoopX + BALL_RADIUS / 2 && ball.x < hoopX + HOOP_WIDTH - BALL_RADIUS / 2) {
+                  score = score + 1;
+                  // Hoop gets faster every basket
+                  if (hoopSpeed > 0) {
+                    hoopSpeed = hoopSpeed + 0.5;
+                  } else {
+                    hoopSpeed = hoopSpeed - 0.5;
+                  }
+                  document.getElementById("messageText").textContent = "Swish! Nice shot.";
+                  resetBall();
+                  updateText();
+                }
+              }
+
+              // Ball flew off the top without scoring
+              if (ball.y < -BALL_RADIUS) {
+                lives = lives - 1;
+                document.getElementById("messageText").textContent = "Missed! " + lives + " lives left.";
+                resetBall();
+                updateText();
+                if (lives === 0) {
+                  endGame();
+                }
+              }
+            }
+          }
+
+          function endGame() {
+            gameRunning = false;
+            scoreHistory.push(score);
+
+            // Find the best score in the list
+            var best = 0;
+            for (var i = 0; i < scoreHistory.length; i++) {
+              if (scoreHistory[i] > best) {
+                best = scoreHistory[i];
+              }
+            }
+            document.getElementById("bestText").textContent = best;
+            document.getElementById("messageText").textContent = "Game over! You scored " + score + ". Click Start to play again.";
+            document.getElementById("startBtn").disabled = false;
+
+            // Show the last 5 games, newest first
+            var list = document.getElementById("historyList");
+            list.innerHTML = "";
+            for (var j = scoreHistory.length - 1; j >= 0 && j >= scoreHistory.length - 5; j--) {
+              var item = document.createElement("li");
+              item.textContent = "Game " + (j + 1) + ": " + scoreHistory[j] + " points";
+              list.appendChild(item);
+            }
+          }
+
+          function draw() {
+            // Court background
+            ctx.fillStyle = "#c98a4b";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Court lines
+            ctx.strokeStyle = "white";
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.arc(canvas.width / 2, canvas.height, 120, Math.PI, 2 * Math.PI);
+            ctx.stroke();
+
+            // Backboard
+            ctx.fillStyle = "white";
+            ctx.fillRect(hoopX + 10, HOOP_Y - 60, HOOP_WIDTH - 20, 50);
+            ctx.strokeStyle = "#e53935";
+            ctx.strokeRect(hoopX + 30, HOOP_Y - 45, HOOP_WIDTH - 60, 30);
+
+            // Net
+            ctx.strokeStyle = "white";
+            ctx.lineWidth = 2;
+            for (var i = 0; i <= 4; i++) {
+              var topX = hoopX + (HOOP_WIDTH / 4) * i;
+              var bottomX = hoopX + 15 + ((HOOP_WIDTH - 30) / 4) * i;
+              ctx.beginPath();
+              ctx.moveTo(topX, HOOP_Y);
+              ctx.lineTo(bottomX, HOOP_Y + 35);
+              ctx.stroke();
+            }
+
+            // Rim
+            ctx.strokeStyle = "#ff5722";
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.moveTo(hoopX, HOOP_Y);
+            ctx.lineTo(hoopX + HOOP_WIDTH, HOOP_Y);
+            ctx.stroke();
+
+            // Ball
+            ctx.fillStyle = "#f57c00";
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, BALL_RADIUS, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(ball.x - BALL_RADIUS, ball.y);
+            ctx.lineTo(ball.x + BALL_RADIUS, ball.y);
+            ctx.moveTo(ball.x, ball.y - BALL_RADIUS);
+            ctx.lineTo(ball.x, ball.y + BALL_RADIUS);
+            ctx.stroke();
+          }
+
+          function gameLoop() {
+            if (gameRunning) {
+              update();
+            }
+            draw();
+            if (gameRunning) {
+              requestAnimationFrame(gameLoop);
+            }
+          }
+
+          // Controls
+          document.getElementById("startBtn").addEventListener("click", startGame);
+          canvas.addEventListener("click", shoot);
+          document.addEventListener("keydown", function(event) {
+            if (event.code === "Space") {
+              event.preventDefault();   // stop the page from scrolling
+              shoot();
+            }
+          });
+
+          // Draw the court once before the game starts
+          resetBall();
+          draw();
+        </script>
+    </body>
+</html>

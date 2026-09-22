@@ -17,30 +17,106 @@
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-                <span class="icon-bar"></span>                        
+                <span class="icon-bar"></span>
               </button>
               <a class="navbar-brand" href="index.html">AP CSP Website</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
               <ul class="nav navbar-nav">
-                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href="index.html">Home</a></li>
                 <li><a href="bio.html">Bio</a></li>
-                <li><a href = "projects.html">Projects</a></li>
-                
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="world.html">See the World</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="game.html">Hoop Shot</a></li>
               </ul>
             </div>
           </div>
         </nav>
-        <div class="parallax maintext text-left  black" >Welcome to my Website!</div>
-        
+
+        <div class="parallax maintext welcome">Welcome to my Website! Have fun!</div>
+
+        <!-- SPECIAL ELEMENT 2: JavaScript greeting + motivation generator -->
+        <div class="container section">
+          <div class="row">
+            <div class="col-sm-6">
+              <h2>Say hi</h2>
+              <p>Type your name and I'll greet you based on the time of day.</p>
+              <input type="text" id="nameInput" class="form-control" placeholder="Your name">
+              <br>
+              <button class="btn btn-default" id="greetBtn">Greet me</button>
+              <p id="greetingText" class="output-text"></p>
+            </div>
+            <div class="col-sm-6">
+              <h2>Need a boost?</h2>
+              <p>Click the button for a random line to get you locked in.</p>
+              <button class="btn btn-default" id="motivateBtn">Motivate me</button>
+              <p id="motivationText" class="output-text"></p>
+              <p id="clickCount" class="small-note"></p>
+            </div>
+          </div>
+        </div>
+
         <div class="parallax maintext text-center top"></div>
 
+        <footer class="broski text">
+          <p>&copy; 2026 Akshay Arora. All rights reserved.</p>
+        </footer>
+
+        <script>
+          // ----- Greeting based on time of day -----
+          function greet() {
+            var name = document.getElementById("nameInput").value.trim();
+            var hour = new Date().getHours();   // 0 - 23
+            var timeOfDay;
+
+            if (hour < 12) {
+              timeOfDay = "Good morning";
+            } else if (hour < 18) {
+              timeOfDay = "Good afternoon";
+            } else {
+              timeOfDay = "Good evening";
+            }
+
+            if (name === "") {
+              document.getElementById("greetingText").textContent = "Type your name first, then click Greet me.";
+            } else {
+              document.getElementById("greetingText").textContent = timeOfDay + ", " + name + "! Thanks for visiting.";
+            }
+          }
+
+          document.getElementById("greetBtn").addEventListener("click", greet);
+
+          // Pressing Enter in the box also greets
+          document.getElementById("nameInput").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+              greet();
+            }
+          });
+
+          // ----- Random motivation from a list -----
+          var motivations = [
+            "Every shot you don't take is practice you didn't get.",
+            "One more rep. Then one more.",
+            "Put your headphones on and get to work.",
+            "Hard work beats talent when talent doesn't show up to the gym.",
+            "Small progress every day adds up to big results.",
+            "Lock in. The version of you next month is counting on it."
+          ];
+          var lastIndex = -1;
+          var clicks = 0;
+
+          document.getElementById("motivateBtn").addEventListener("click", function() {
+            // Pick a random index that is different from the last one
+            var index = Math.floor(Math.random() * motivations.length);
+            while (index === lastIndex) {
+              index = Math.floor(Math.random() * motivations.length);
+            }
+            lastIndex = index;
+            clicks = clicks + 1;
+
+            document.getElementById("motivationText").textContent = motivations[index];
+            document.getElementById("clickCount").textContent = "You've been motivated " + clicks + " time(s).";
+          });
+        </script>
     </body>
-    <footer class = "broski text">
-      <p > &copy; 2026 Akshay Arora. All rights reserved.</p>
-    </footer>
 </html>
