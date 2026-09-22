@@ -16,7 +16,15 @@ footer.broski {
     margin-top: 40px;
 }
 footer.broski p {
-    margin: 0px;
+    margin: 5px 0px;
+}
+.footer-link {
+    color: pink;
+    text-decoration: underline;
+}
+.footer-link:hover,
+.footer-link:focus {
+    color: white;
 }
 nav li:hover {
     background-color: pink;
@@ -48,19 +56,110 @@ nav li:hover {
 
 /* ---------- Parallax ---------- */
 .parallax {
-    background-image: url("https://codehs.com/uploads/eefe9ab22be0fdfc0860514537f612a1");
+    /* Change this link to use a different picture */
+    background-image: url("https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1600");
+    background-color: #222;   /* shows if the image doesn't load */
     min-height: 400px;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
-.welcome {
-    padding: 40px;
-    color: black;
+.parallax2 {
+    /* Second parallax uses your original picture */
+    background-image: url("https://codehs.com/uploads/eefe9ab22be0fdfc0860514537f612a1");
 }
 .top {
     padding-top: 200px;
+}
+
+/* ---------- Home page ---------- */
+.hero {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+.hero-box {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 700px;
+    text-align: center;
+}
+.hero-title {
+    font-size: 56px;
+    font-weight: bold;
+    margin-top: 0px;
+}
+.hero-sub {
+    font-size: 20px;
+    color: #ddd;
+    margin-bottom: 25px;
+}
+.btn-hero {
+    background-color: pink;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 24px;
+    border: 2px solid pink;
+    border-radius: 30px;
+    margin-top: 10px;
+}
+.btn-hero:hover,
+.btn-hero:focus {
+    background-color: white;
+    color: black;
+    border-color: white;
+}
+.btn-hero-outline {
+    background-color: transparent;
+    color: white;
+    border-color: white;
+}
+.quick-link {
+    display: block;
+    color: black;
+    padding: 25px;
+    border-radius: 12px;
+}
+.quick-link:hover,
+.quick-link:focus {
+    background-color: #fdeef1;
+    color: black;
+    text-decoration: none;
+}
+.quick-link .glyphicon {
+    font-size: 50px;
+    color: #A0A0A0;
+}
+.divider {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.divider-text {
+    font-size: 45px;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.55);
+    padding: 15px 30px;
+    border-radius: 12px;
+    margin: 0px;
+    text-align: center;
+}
+.panel-box {
+    border: 3px solid black;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+.panel-box h2 {
+    margin-top: 0px;
 }
 
 /* ---------- Page sections ---------- */
@@ -93,10 +192,10 @@ nav li:hover {
 }
 
 /* ---------- Projects ---------- */
-.project {
-    border-left: 6px solid pink;
-    padding: 10px 20px;
-    margin: 30px 0px;
+.coming-soon {
+    border: 4px solid black;
+    border-radius: 12px;
+    margin-bottom: 30px;
 }
 
 /* ---------- Game ---------- */
@@ -144,12 +243,30 @@ nav li:hover {
     background-size: auto 100%;
     background-repeat: repeat-x;
 }
+/* Map scrollbar: thick and pink so it's always easy to see */
+.stage {
+    scrollbar-width: auto;              /* Firefox */
+    scrollbar-color: pink #555;         /* Firefox: thumb, track */
+}
 .stage::-webkit-scrollbar {
-    height: 8px;
+    height: 18px;
+}
+.stage::-webkit-scrollbar-track {
+    background: #555;
+    border-radius: 0px 0px 12px 12px;
 }
 .stage::-webkit-scrollbar-thumb {
-    background: #333;
-    border-radius: 4px;
+    background: pink;
+    border: 3px solid #555;
+    border-radius: 10px;
+}
+.stage::-webkit-scrollbar-thumb:hover {
+    background: white;
+}
+.scroll-hint {
+    font-size: 18px;
+    font-weight: bold;
+    color: #A0A0A0;
 }
 
 /* ---------- Phones ---------- */
@@ -159,5 +276,15 @@ nav li:hover {
     }
     .stage {
         height: 300px;
+    }
+    .hero-title {
+        font-size: 36px;
+    }
+    .divider-text {
+        font-size: 28px;
+    }
+    /* Fixed backgrounds don't work well on phones */
+    .parallax {
+        background-attachment: scroll;
     }
 }
