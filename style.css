@@ -189,30 +189,6 @@ a.uiverse-btn:focus {
     margin-top: 10px;
 }
 
-/* ===== hoop shot game ===== */
-#gameCanvas {
-    width: 100%;
-    max-width: 600px;
-    border: 4px solid black;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.game-stats {
-    font-size: 22px;
-    margin-bottom: 10px;
-}
-
-.game-stats span {
-    margin: 0px 15px;
-}
-
-.history-list {
-    list-style: none;
-    padding: 0px;
-    font-size: 18px;
-}
-
 /* ===== see the world map ===== */
 .stage {
     width: 100%;
@@ -280,9 +256,5 @@ a.uiverse-btn:focus {
 
     .stage {
         height: 300px;
-    }
-
-    .game-stats span {
-        margin: 0px 8px;
     }
 }
