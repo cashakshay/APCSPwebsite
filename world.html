@@ -8,90 +8,87 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="style.css">
         <link rel="icon" type="image/x-icon" href="https://codehs.com/uploads/6795630657e2aea573561b8d9246dac0">
-        <title>Akshay Arora</title>
+        <title>See the World | Akshay Arora</title>
     </head>
     <body>
         <nav class="broski navbar navbar-inverse text">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="index.html">AP CSP Website</a>
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">AP CSP Website</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                        <li><a href="bio.html"><span class="glyphicon glyphicon-user"></span> Bio</a></li>
+                        <li><a href="projects.html"><span class="glyphicon glyphicon-folder-open"></span> Projects</a></li>
+                        <li class="active"><a href="world.html"><span class="glyphicon glyphicon-globe"></span> See the World</a></li>
+                        <li><a href="game.html"><span class="glyphicon glyphicon-record"></span> Hoop Shot</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-              <ul class="nav navbar-nav">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="bio.html">Bio</a></li>
-                <li class="active"><a href="world.html">See the World</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="game.html">Hoop Shot</a></li>
-              </ul>
-            </div>
-          </div>
         </nav>
 
         <div class="container section">
-          <h1 class="maintext black text-center">See the World</h1>
-          <p class="text-center">Scroll sideways across the map, or pick a continent to jump there.</p>
+            <h1 class="maintext black text-center">See the World</h1>
+            <p class="text-center">Scroll across the map or pick a continent.</p>
 
-          <div class="stage" id="stage">
-            <div class="world-tunnel">
-              <div class="world-map"></div>
+            <div class="stage" id="stage">
+                <div class="world-tunnel">
+                    <div class="world-map"></div>
+                </div>
             </div>
-          </div>
-          <p class="text-center scroll-hint"><span class="glyphicon glyphicon-arrow-left"></span> Drag the pink bar to scroll the map <span class="glyphicon glyphicon-arrow-right"></span></p>
+            <p class="text-center scroll-hint"><span class="glyphicon glyphicon-arrow-left"></span> Drag the pink bar to scroll the map <span class="glyphicon glyphicon-arrow-right"></span></p>
 
-          <div class="text-center continent-buttons" id="buttons"></div>
-          <p class="output-text text-center" id="factText"></p>
+            <div class="text-center">
+                <button class="btn btn-default" onclick="goTo(0)">North America</button>
+                <button class="btn btn-default" onclick="goTo(1)">South America</button>
+                <button class="btn btn-default" onclick="goTo(2)">Europe</button>
+                <button class="btn btn-default" onclick="goTo(3)">Africa</button>
+                <button class="btn btn-default" onclick="goTo(4)">Asia</button>
+                <button class="btn btn-default" onclick="goTo(5)">Australia</button>
+            </div>
+            <p class="output-text text-center" id="factText"></p>
         </div>
 
         <footer class="broski text">
-          <p>&copy; 2026 Akshay Arora. All rights reserved.</p>
-          <p><a class="footer-link" href="https://www.livermoreschools.org/granadahigh" target="_blank">Granada High School</a></p>
+            <p>Created by Akshay Arora &copy; 2026</p>
+            <p>
+                <a class="footer-link" href="https://www.livermoreschools.org/granadahigh" target="_blank"><span class="glyphicon glyphicon-education"></span> Granada High School</a>
+                &nbsp;|&nbsp;
+                <a class="footer-link" href="mailto:YOUR_EMAIL_HERE"><span class="glyphicon glyphicon-envelope"></span> Email me</a>
+            </p>
         </footer>
 
         <script>
-          // Each continent: its name, where it sits on the map (0 = left edge, 1 = right edge), and a fact
-          var continents = [
-            { name: "North America", spot: 0.22, fact: "North America has every type of climate, from Arctic tundra to tropical rainforest." },
-            { name: "South America", spot: 0.33, fact: "The Amazon River carries more water than any other river on Earth." },
-            { name: "Europe",        spot: 0.53, fact: "Europe has over 40 countries packed into a fairly small area." },
-            { name: "Africa",        spot: 0.56, fact: "Africa has 54 countries, more than any other continent." },
-            { name: "Asia",          spot: 0.75, fact: "Asia is home to about 60% of all the people in the world." },
-            { name: "Australia",     spot: 0.88, fact: "Australia is the only continent that is also a single country." }
-          ];
+            // where each continent is on the map (0 = left side, 1 = right side)
+            var spots = [0.22, 0.33, 0.53, 0.56, 0.75, 0.88];
 
-          var stage = document.getElementById("stage");
-          var buttonBox = document.getElementById("buttons");
+            var facts = [
+                "North America: it has every climate, from frozen tundra to rainforest.",
+                "South America: the Amazon River carries more water than any other river.",
+                "Europe: it has over 40 countries in a pretty small area.",
+                "Africa: it has 54 countries, more than any other continent.",
+                "Asia: about 60% of all people in the world live here.",
+                "Australia: it's the only continent that is also one country."
+            ];
 
-          // The map image is twice as wide as it is tall
-          function mapWidth() {
-            return stage.clientHeight * 2;
-          }
+            var stage = document.getElementById("stage");
 
-          function goTo(continent) {
-            // Use the second copy of the map so we never scroll past the left edge
-            var target = mapWidth() + continent.spot * mapWidth() - stage.clientWidth / 2;
-            stage.scrollTo({ left: target, behavior: "smooth" });
-            document.getElementById("factText").textContent = continent.name + ": " + continent.fact;
-          }
+            function goTo(number) {
+                // the map picture is twice as wide as it is tall
+                var mapWidth = stage.clientHeight * 2;
+                var target = mapWidth + spots[number] * mapWidth - stage.clientWidth / 2;
+                stage.scrollTo({ left: target, behavior: "smooth" });
+                document.getElementById("factText").innerHTML = facts[number];
+            }
 
-          // Make one button for each continent in the list
-          for (var i = 0; i < continents.length; i++) {
-            var btn = document.createElement("button");
-            btn.className = "btn btn-default";
-            btn.textContent = continents[i].name;
-            btn.addEventListener("click", (function(c) {
-              return function() { goTo(c); };
-            })(continents[i]));
-            buttonBox.appendChild(btn);
-          }
-
-          // Start the map on the second copy so you can scroll both ways
-          stage.scrollLeft = mapWidth();
+            // start on the second copy of the map so you can scroll both ways
+            stage.scrollLeft = stage.clientHeight * 2;
         </script>
     </body>
 </html>

@@ -8,157 +8,102 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="style.css">
         <link rel="icon" type="image/x-icon" href="https://codehs.com/uploads/6795630657e2aea573561b8d9246dac0">
-        <title>Akshay Arora</title>
+        <title>Home | Akshay Arora</title>
     </head>
     <body>
         <nav class="broski navbar navbar-inverse text">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="index.html">AP CSP Website</a>
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">AP CSP Website</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="index.html"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                        <li><a href="bio.html"><span class="glyphicon glyphicon-user"></span> Bio</a></li>
+                        <li><a href="projects.html"><span class="glyphicon glyphicon-folder-open"></span> Projects</a></li>
+                        <li><a href="world.html"><span class="glyphicon glyphicon-globe"></span> See the World</a></li>
+                        <li><a href="game.html"><span class="glyphicon glyphicon-record"></span> Hoop Shot</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="index.html">Home</a></li>
-                <li><a href="bio.html">Bio</a></li>
-                <li><a href="world.html">See the World</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="game.html">Hoop Shot</a></li>
-              </ul>
-            </div>
-          </div>
         </nav>
 
-        <!-- Parallax 1: big welcome -->
-        <div class="parallax hero">
-          <div class="hero-box">
-            <h1 class="hero-title">Welcome to my Website!</h1>
-            <p class="hero-sub">I'm Akshay. I play basketball, lift, and build things with code. Have fun looking around.</p>
-            <a class="btn btn-hero" href="game.html">Play Hoop Shot</a>
-            <a class="btn btn-hero btn-hero-outline" href="bio.html">About me</a>
-          </div>
-        </div>
+        <div class="parallax maintext text-left black">Welcome to my Website! Have fun!</div>
 
-        <!-- Quick links -->
         <div class="container section">
-          <div class="row text-center">
-            <div class="col-sm-4">
-              <a class="quick-link" href="bio.html">
-                <span class="glyphicon glyphicon-user"></span>
-                <h3>Bio</h3>
-                <p>Basketball, music, and the gym.</p>
-              </a>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Say hi</h2>
+                    <p>Type your name and I'll greet you based on the time of day.</p>
+                    <input type="text" id="nameInput" class="form-control" placeholder="Your name">
+                    <button class="uiverse-btn" id="greetBtn"><span class="button_top">Greet me</span></button>
+                    <p id="greetingText" class="output-text"></p>
+                </div>
+                <div class="col-sm-6">
+                    <h2>Need a boost?</h2>
+                    <p>Click the button for a random line to get you locked in.</p>
+                    <button class="uiverse-btn" id="motivateBtn"><span class="button_top">Motivate me</span></button>
+                    <p id="motivationText" class="output-text"></p>
+                    <p id="clickCount" class="small-note"></p>
+                </div>
             </div>
-            <div class="col-sm-4">
-              <a class="quick-link" href="world.html">
-                <span class="glyphicon glyphicon-globe"></span>
-                <h3>See the World</h3>
-                <p>Fly across a 3D world map.</p>
-              </a>
-            </div>
-            <div class="col-sm-4">
-              <a class="quick-link" href="projects.html">
-                <span class="glyphicon glyphicon-folder-open"></span>
-                <h3>Projects</h3>
-                <p>What I'm working on this year.</p>
-              </a>
-            </div>
-          </div>
         </div>
 
-        <!-- Parallax 2: divider with a line of text -->
-        <div class="parallax parallax2 divider">
-          <p class="divider-text">Lock in. Keep shooting.</p>
-        </div>
-
-        <!-- SPECIAL ELEMENT 2: JavaScript greeting + motivation generator -->
-        <div class="container section">
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="panel-box">
-                <h2>Say hi</h2>
-                <p>Type your name and I'll greet you based on the time of day.</p>
-                <input type="text" id="nameInput" class="form-control" placeholder="Your name">
-                <button class="btn btn-hero" id="greetBtn">Greet me</button>
-                <p id="greetingText" class="output-text"></p>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="panel-box">
-                <h2>Need a boost?</h2>
-                <p>Click the button for a random line to get you locked in.</p>
-                <button class="btn btn-hero" id="motivateBtn">Motivate me</button>
-                <p id="motivationText" class="output-text"></p>
-                <p id="clickCount" class="small-note"></p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="parallax parallax2 top"></div>
 
         <footer class="broski text">
-          <p>&copy; 2026 Akshay Arora. All rights reserved.</p>
-          <p><a class="footer-link" href="https://www.livermoreschools.org/granadahigh" target="_blank">Granada High School</a></p>
+            <p>Created by Akshay Arora &copy; 2026</p>
+            <p>
+                <a class="footer-link" href="https://www.livermoreschools.org/granadahigh" target="_blank"><span class="glyphicon glyphicon-education"></span> Granada High School</a>
+                &nbsp;|&nbsp;
+                <a class="footer-link" href="mailto:YOUR_EMAIL_HERE"><span class="glyphicon glyphicon-envelope"></span> Email me</a>
+            </p>
         </footer>
 
         <script>
-          // ----- Greeting based on time of day -----
-          function greet() {
-            var name = document.getElementById("nameInput").value.trim();
-            var hour = new Date().getHours();   // 0 - 23
-            var timeOfDay;
+            // greeting that changes with the time of day
+            function greet() {
+                var name = document.getElementById("nameInput").value;
+                var hour = new Date().getHours();
+                var timeOfDay = "Good evening";
 
-            if (hour < 12) {
-              timeOfDay = "Good morning";
-            } else if (hour < 18) {
-              timeOfDay = "Good afternoon";
-            } else {
-              timeOfDay = "Good evening";
+                if (hour < 12) {
+                    timeOfDay = "Good morning";
+                } else if (hour < 18) {
+                    timeOfDay = "Good afternoon";
+                }
+
+                if (name == "") {
+                    document.getElementById("greetingText").innerHTML = "Type your name first!";
+                } else {
+                    document.getElementById("greetingText").innerHTML = timeOfDay + ", " + name + "! Thanks for visiting.";
+                }
             }
 
-            if (name === "") {
-              document.getElementById("greetingText").textContent = "Type your name first, then click Greet me.";
-            } else {
-              document.getElementById("greetingText").textContent = timeOfDay + ", " + name + "! Thanks for visiting.";
-            }
-          }
+            document.getElementById("greetBtn").onclick = greet;
 
-          document.getElementById("greetBtn").addEventListener("click", greet);
+            // random motivation from a list
+            var motivations = [
+                "Every shot you don't take is practice you didn't get.",
+                "One more rep. Then one more.",
+                "Put your headphones on and get to work.",
+                "Hard work beats talent when talent doesn't work hard.",
+                "Small progress every day adds up.",
+                "Lock in."
+            ];
+            var clicks = 0;
 
-          // Pressing Enter in the box also greets
-          document.getElementById("nameInput").addEventListener("keydown", function(event) {
-            if (event.key === "Enter") {
-              greet();
-            }
-          });
-
-          // ----- Random motivation from a list -----
-          var motivations = [
-            "Every shot you don't take is practice you didn't get.",
-            "One more rep. Then one more.",
-            "Put your headphones on and get to work.",
-            "Hard work beats talent when talent doesn't show up to the gym.",
-            "Small progress every day adds up to big results.",
-            "Lock in. The version of you next month is counting on it."
-          ];
-          var lastIndex = -1;
-          var clicks = 0;
-
-          document.getElementById("motivateBtn").addEventListener("click", function() {
-            // Pick a random index that is different from the last one
-            var index = Math.floor(Math.random() * motivations.length);
-            while (index === lastIndex) {
-              index = Math.floor(Math.random() * motivations.length);
-            }
-            lastIndex = index;
-            clicks = clicks + 1;
-
-            document.getElementById("motivationText").textContent = motivations[index];
-            document.getElementById("clickCount").textContent = "You've been motivated " + clicks + " time(s).";
-          });
+            document.getElementById("motivateBtn").onclick = function() {
+                var index = Math.floor(Math.random() * motivations.length);
+                clicks = clicks + 1;
+                document.getElementById("motivationText").innerHTML = motivations[index];
+                document.getElementById("clickCount").innerHTML = "You've been motivated " + clicks + " times.";
+            };
         </script>
     </body>
 </html>
